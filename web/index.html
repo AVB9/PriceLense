@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PriceLens — Price History, Compare &amp; Budget Cart</title>
+  <meta name="description" content="Live Buyhatke price history, multi-product comparison memory, and a universal budget cart for Firefox, Zen, Chrome, Brave, Edge, and Arc.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Ambient Grainy Gradient Canvas -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="mesh-orb orb-1"></div>
+    <div class="mesh-orb orb-2"></div>
+    <div class="mesh-orb orb-3"></div>
+    <svg class="grain-layer" xmlns="http://www.w3.org/2000/svg">
+      <filter id="grainNoise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.78" numOctaves="3" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#grainNoise)" />
+    </svg>
+  </div>
+
+  <!-- Minimal Floating Navigation -->
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <svg class="brand-glyph" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 17l6-6 4 4 8-8" />
+          <path d="M17 7h4v4" />
+        </svg>
+        <span class="brand-title">PriceLens</span>
+        <span class="version-chip">3.3</span>
+      </a>
+      <div class="nav-links">
+        <a href="#preview">Preview</a>
+        <a href="#browsers">Browsers</a>
+        <a href="#install-guide">Install</a>
+        <a href="downloads/pricelens-universal-v3.3.zip" class="nav-cta" download>Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Minimalist First Half: Hero Only -->
+  <header class="hero-section">
+    <div class="hero-container">
+      <div class="eyebrow-pill">
+        <span class="status-dot"></span>
+        <span id="detectedBrowserBanner">Manifest V3 · Gecko &amp; Chromium</span>
+      </div>
+
+      <h1 class="hero-headline">
+        Price history,<br>
+        <span class="gradient-sub">without leaving the tab.</span>
+      </h1>
+
+      <p class="hero-lead">
+        Live Buyhatke charts, cross-tab product comparison, and a universal budget cart.
+      </p>
+
+      <!-- Clean Dual Download Bar -->
+      <div class="hero-cta-row">
+        <a href="downloads/pricelens-firefox-v3.3.zip" class="btn-hero-dl" id="btnDlGecko" download>
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 2v8.5M4.5 7.5L8 11l3.5-3.5M2.5 13.5h11"/>
+          </svg>
+          <span>Firefox &amp; Zen</span>
+        </a>
+        <a href="downloads/pricelens-chromium-v3.3.zip" class="btn-hero-dl" id="btnDlChromium" download>
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 2v8.5M4.5 7.5L8 11l3.5-3.5M2.5 13.5h11"/>
+          </svg>
+          <span>Chrome, Brave, Edge &amp; Arc</span>
+        </a>
+      </div>
+
+      <div class="hero-footnote">
+        <span>100% Client-Side</span>
+        <span class="dot-sep">·</span>
+        <span>Zero Telemetry</span>
+        <span class="dot-sep">·</span>
+        <a href="#install-guide">Setup Guide</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Floating Popup Preview -->
+  <section class="preview-section" id="preview">
+    <div class="preview-stage">
+      <div class="preview-window">
+        <div class="preview-header">
+          <div class="preview-brand">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#0A84FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/>
+            </svg>
+            <span>PriceLens</span>
+          </div>
+          <div class="preview-pills">
+            <span class="p-pill active">Insights</span>
+            <span class="p-pill">Launcher</span>
+          </div>
+        </div>
+
+        <div class="preview-product-bar">
+          <div class="preview-prod-top">
+            <div>
+              <span class="p-store">AMAZON</span>
+              <span class="p-variant">Midnight Blue</span>
+            </div>
+            <span class="p-live">Live: ₹26,990</span>
+          </div>
+          <div class="preview-prod-title">Sony WH-1000XM5 Wireless Noise Cancelling Headphones</div>
+          <div class="preview-quick-row">
+            <span class="p-act active">Saved (2)</span>
+            <span class="p-act blue">Compare (2)</span>
+            <span class="p-act green">In Cart (1)</span>
+          </div>
+        </div>
+
+        <div class="preview-deal-bar">
+          <div class="preview-deal-top">
+            <strong>All-Time Low · Score 94/100</strong>
+            <div class="preview-src-tags">
+              <span class="src-tag">Live DOM</span>
+              <span class="src-tag">Buyhatke</span>
+            </div>
+          </div>
+          <p>Trading at its verified all-time low of ₹26,990 (23% below MRP).</p>
+        </div>
+
+        <div class="preview-bento-grid">
+          <div class="p-metric">
+            <span>CURRENT</span>
+            <strong>₹26,990</strong>
+          </div>
+          <div class="p-metric">
+            <span>ALL-TIME LOW</span>
+            <strong class="green">₹26,990</strong>
+          </div>
+          <div class="p-metric">
+            <span>LIST / MRP</span>
+            <strong class="red">₹34,990</strong>
+          </div>
+          <div class="p-metric">
+            <span>AVERAGE</span>
+            <strong class="blue">₹29,840</strong>
+          </div>
+        </div>
+
+        <div class="preview-chart-box">
+          <div class="preview-chart-badge">Buyhatke Highcharts</div>
+          <svg viewBox="0 0 560 110" width="100%" height="100">
+            <defs>
+              <linearGradient id="demoGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0A84FF" stop-opacity="0.32"/>
+                <stop offset="100%" stop-color="#0A84FF" stop-opacity="0.0"/>
+              </linearGradient>
+            </defs>
+            <line x1="20" y1="25" x2="540" y2="25" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 3"/>
+            <line x1="20" y1="55" x2="540" y2="55" stroke="rgba(10,132,255,0.28)" stroke-dasharray="4 4"/>
+            <line x1="20" y1="85" x2="540" y2="85" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3 3"/>
+            <path d="M 20 28 C 90 28, 120 48, 180 46 C 240 44, 280 78, 340 62 C 400 46, 460 84, 540 84 L 540 102 L 20 102 Z" fill="url(#demoGrad)"/>
+            <path d="M 20 28 C 90 28, 120 48, 180 46 C 240 44, 280 78, 340 62 C 400 46, 460 84, 540 84" fill="none" stroke="#0A84FF" stroke-width="2.2"/>
+            <circle cx="540" cy="84" r="4.5" fill="#30D158" stroke="#070709" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimal 3-Pillar Overview -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="features-bento">
+        <div class="feat-card">
+          <div class="feat-icon">
+            <svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 14l4-4 3 3 7-7"/><path d="M13 6h4v4"/>
+            </svg>
+          </div>
+          <h3>Buyhatke Live Engine</h3>
+          <p>Reads Buyhatke Price Stats, Deal Score, and Highcharts series silently on your device with zero server bottlenecks.</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon">
+            <svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2.5" y="3.5" width="6" height="13" rx="1.5"/><rect x="11.5" y="3.5" width="6" height="13" rx="1.5"/>
+            </svg>
+          </div>
+          <h3>Compare Memory</h3>
+          <p>Pin products across Amazon, Flipkart, Myntra, and Croma into a clean side-by-side matrix with automatic best-price badges.</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon">
+            <svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="7" cy="16" r="1.3"/><circle cx="14.5" cy="16" r="1.3"/>
+              <path d="M2 3h2.5l2.2 9.5h9.3l1.8-6.5H5.5"/>
+            </svg>
+          </div>
+          <h3>Universal Budget Cart</h3>
+          <p>Track combined spend across every shopping platform against a live budget bar and open all checkout tabs in one click.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Browser Support Matrix -->
+  <section class="section" id="browsers">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">COMPATIBILITY</span>
+        <h2>15+ Supported Browsers</h2>
+        <p>Built on universal Manifest V3 with native Gecko and Chromium bundles.</p>
+      </div>
+
+      <div class="browser-table-wrap">
+        <table class="browser-table">
+          <thead>
+            <tr>
+              <th>Browser</th>
+              <th>Engine</th>
+              <th>Package</th>
+              <th>Install Path</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Firefox &amp; Zen Browser</strong></td>
+              <td><span class="tbl-badge gecko">Gecko MV3</span></td>
+              <td>Firefox (.zip)</td>
+              <td><code>about:debugging#/runtime/this-firefox</code></td>
+            </tr>
+            <tr>
+              <td><strong>LibreWolf, Waterfox &amp; Floorp</strong></td>
+              <td><span class="tbl-badge gecko">Gecko MV3</span></td>
+              <td>Firefox (.zip)</td>
+              <td><code>about:debugging</code> / <code>about:addons</code></td>
+            </tr>
+            <tr>
+              <td><strong>Chrome, Brave &amp; Edge</strong></td>
+              <td><span class="tbl-badge chromium">Chromium MV3</span></td>
+              <td>Chromium (.zip)</td>
+              <td><code>chrome://extensions</code> → Load unpacked</td>
+            </tr>
+            <tr>
+              <td><strong>Arc, Vivaldi &amp; Opera</strong></td>
+              <td><span class="tbl-badge chromium">Chromium MV3</span></td>
+              <td>Chromium (.zip)</td>
+              <td><code>arc://extensions</code> / <code>vivaldi://extensions</code></td>
+            </tr>
+            <tr>
+              <td><strong>Android (Kiwi, Mises, Firefox Nightly)</strong></td>
+              <td><span class="tbl-badge mobile">Mobile MV3</span></td>
+              <td>Chromium / Firefox (.zip)</td>
+              <td><code>Install from .zip / .xpi</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step-by-Step Installation Guide -->
+  <section class="section" id="install-guide">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">INSTALLATION</span>
+        <h2>Up and running in 30 seconds</h2>
+        <p>Choose your browser family and copy any internal address in one click.</p>
+      </div>
+
+      <div class="guide-tabs-bar">
+        <button class="guide-tab active" data-guide="gecko">Firefox &amp; Zen</button>
+        <button class="guide-tab" data-guide="chromium">Chrome, Brave, Edge &amp; Arc</button>
+        <button class="guide-tab" data-guide="android">Android Mobile</button>
+      </div>
+
+      <!-- Gecko Steps -->
+      <div class="guide-panel active" id="guide-gecko">
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <h3>Download &amp; Unzip</h3>
+            <p>Download <code>pricelens-firefox-v3.3.zip</code> and extract it to a permanent folder.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <h3>Open Debugging</h3>
+            <p>Paste this into your address bar and press Enter:</p>
+            <div class="copy-code-row">
+              <code>about:debugging#/runtime/this-firefox</code>
+              <button class="copy-snippet-btn" data-copy="about:debugging#/runtime/this-firefox">Copy</button>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <h3>Load Manifest</h3>
+            <p>Click <strong>Load Temporary Add-on...</strong> and choose <code>manifest.json</code> inside the extracted folder.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Permanent</div>
+            <h3>Zen / Developer Edition</h3>
+            <p>Set this flag to <code>false</code> in <code>about:config</code>, then install the <code>.zip</code> via <code>about:addons</code>:</p>
+            <div class="copy-code-row">
+              <code>xpinstall.signatures.required</code>
+              <button class="copy-snippet-btn" data-copy="xpinstall.signatures.required">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chromium Steps -->
+      <div class="guide-panel" id="guide-chromium">
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <h3>Download &amp; Unzip</h3>
+            <p>Download <code>pricelens-chromium-v3.3.zip</code> and extract it to a permanent folder.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <h3>Open Extensions</h3>
+            <p>Paste this into your Chrome, Brave, Edge, or Arc address bar:</p>
+            <div class="copy-code-row">
+              <code>chrome://extensions</code>
+              <button class="copy-snippet-btn" data-copy="chrome://extensions">Copy</button>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <h3>Developer Mode</h3>
+            <p>Toggle <strong>Developer mode</strong> on in the top-right corner.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">04</div>
+            <h3>Load Unpacked</h3>
+            <p>Click <strong>Load unpacked</strong>, select the extracted folder, and pin <strong>PriceLens</strong> to your toolbar.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Android Steps -->
+      <div class="guide-panel" id="guide-android">
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">Kiwi / Mises</div>
+            <h3>Direct .zip Install</h3>
+            <p>Open <code>chrome://extensions</code>, enable <strong>Developer mode</strong>, tap <strong>+(from .zip)</strong>, and pick <code>pricelens-chromium-v3.3.zip</code>.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Firefox Nightly</div>
+            <h3>Install From File</h3>
+            <p>Enable <code>xpinstall.signatures.required = false</code> in <code>about:config</code> and install <code>pricelens-firefox-v3.3.zip</code>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimal Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span><strong>PriceLens v3.3</strong> · Atharva Vijaykumar Bedarkar</span>
+      <span>Client-Side Price Intelligence · MIT License</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

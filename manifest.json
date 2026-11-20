@@ -1,0 +1,68 @@
+{
+  "manifest_version": 3,
+  "name": "PriceLens — Buyhatke Price History, Compare & Budget Cart",
+  "version": "3.3.0",
+  "description": "Apple-designed price history tracker powered by Buyhatke, multi-product comparison memory, and cross-platform budget cart.",
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon.svg",
+    "128": "icons/icon-128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "pricelens-extension@firefox.addon",
+      "strict_min_version": "109.0"
+    },
+    "gecko_android": {
+      "strict_min_version": "113.0"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "scripts": [
+      "lib/url-cleaner.js",
+      "lib/providers.js",
+      "lib/parsers.js",
+      "lib/scrapers.js",
+      "background/background.js"
+    ]
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    },
+    "default_title": "PriceLens: Price History, Compare & Cart"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.amazon.in/*",
+        "*://*.amazon.com/*",
+        "*://*.flipkart.com/*",
+        "*://*.myntra.com/*",
+        "*://*.croma.com/*",
+        "*://*.tatacliq.com/*",
+        "*://*.ajio.com/*",
+        "*://*.reliancedigital.in/*"
+      ],
+      "js": ["content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

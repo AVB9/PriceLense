@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PriceLens Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <svg class="brand-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 17l6-6 4 4 8-8" />
+          <path d="M17 7h4v4" />
+        </svg>
+        <div>
+          <h1>PriceLens Configuration</h1>
+          <p class="subtitle">Customize extension display behavior, default tracking provider, and custom scraper rules.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- Popup Display Mode Preference -->
+      <section class="card highlight-card">
+        <h2>Display Mode</h2>
+        <p class="subtitle" style="margin-bottom: 16px;">
+          Select default presentation mode when opening the toolbar action.
+        </p>
+
+        <div class="mode-options-grid">
+          <!-- Option 1: Quick Redirect Launcher -->
+          <label class="mode-card-label">
+            <input type="radio" name="displayModeRadio" value="redirect" id="modeRadioRedirect" checked>
+            <div class="mode-card-content">
+              <div class="mode-card-header">
+                <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8.5 1.5L2.5 9h5l-1 5.5 6-7.5h-5l1-5.5z"/>
+                </svg>
+                <strong>Redirect Launcher Mode (Recommended)</strong>
+              </div>
+              <p>
+                Renders detected product title and a primary button directing to the selected provider with product link pre-filled. Clean, high-speed, and minimal.
+              </p>
+            </div>
+          </label>
+
+          <!-- Option 2: Full Dashboard -->
+          <label class="mode-card-label">
+            <input type="radio" name="displayModeRadio" value="dashboard" id="modeRadioDashboard">
+            <div class="mode-card-content">
+              <div class="mode-card-header">
+                <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 14h12M2 14V2M4 10l3-4 3 3 4-5"/>
+                </svg>
+                <strong>Full Analytics Dashboard Mode</strong>
+              </div>
+              <p>
+                Displays live DOM prices, historical price curves, deal rating status, and store comparison cards directly inside the popup.
+              </p>
+            </div>
+          </label>
+        </div>
+
+        <div class="checkbox-group" style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border-hairline);">
+          <input type="checkbox" id="autoRedirectInstant">
+          <label for="autoRedirectInstant">
+            <strong>Instant Auto-Redirect:</strong> Directly launch provider website in a new tab when clicking the toolbar icon (includes a 600ms cancellation safety banner).
+          </label>
+        </div>
+      </section>
+
+      <!-- Provider & In-page Settings -->
+      <section class="card">
+        <h2>Provider & In-Page Settings</h2>
+        <div class="form-group">
+          <label for="defaultProviderSelect">Default Price Tracker Provider</label>
+          <select id="defaultProviderSelect" class="form-control">
+            <!-- Populated dynamically -->
+          </select>
+          <small class="help-text">Primary engine used for redirect links and priority data queries.</small>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="enableFloatingBadge" checked>
+          <label for="enableFloatingBadge">Enable floating PriceLens capsule on shopping pages (Amazon, Flipkart, etc.)</label>
+        </div>
+      </section>
+
+      <!-- Provider List -->
+      <section class="card">
+        <div class="section-header">
+          <div>
+            <h2>Configured Price Tracking Providers</h2>
+            <p class="subtitle">Default and user-defined tracking endpoints.</p>
+          </div>
+          <button id="showAddModalBtn" class="btn btn-primary">Add Custom Provider</button>
+        </div>
+
+        <div id="providerCardsList" class="provider-grid">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+
+      <!-- Add/Edit Custom Provider Modal -->
+      <div id="providerModal" class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 id="modalTitle">Add Custom Price Tracker Provider</h3>
+            <button id="closeModalBtn" class="close-btn">
+              <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M4 4l8 8M12 4l-8 8"/>
+              </svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="info-banner">
+              Configure any web service that accepts product URLs for price history tracking.
+            </p>
+
+            <div class="form-group">
+              <label for="customName">Provider Name <span class="required">*</span></label>
+              <input type="text" id="customName" class="form-control" placeholder="e.g. My Tracker">
+            </div>
+
+            <div class="form-group">
+              <label for="customWebsite">Website Base URL <span class="required">*</span></label>
+              <input type="url" id="customWebsite" class="form-control" placeholder="https://example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="customTemplate">Lookup URL Template <span class="required">*</span></label>
+              <input type="text" id="customTemplate" class="form-control" placeholder="https://example.com/search?url={{encodedUrl}}">
+              <small class="help-text">Use <code>{{url}}</code> for raw product URL or <code>{{encodedUrl}}</code> for URL-encoded parameter.</small>
+            </div>
+
+            <details class="advanced-section">
+              <summary>Optional CSS Selectors (For Custom Scraping)</summary>
+              <div class="selectors-grid">
+                <div class="form-group">
+                  <label for="selTitle">Product Title Selector</label>
+                  <input type="text" id="selTitle" class="form-control" placeholder="e.g. h1.product-title">
+                </div>
+                <div class="form-group">
+                  <label for="selCurPrice">Current Price Selector</label>
+                  <input type="text" id="selCurPrice" class="form-control" placeholder="e.g. .current-price, .price">
+                </div>
+                <div class="form-group">
+                  <label for="selLowPrice">Lowest Price Selector</label>
+                  <input type="text" id="selLowPrice" class="form-control" placeholder="e.g. .lowest-price">
+                </div>
+                <div class="form-group">
+                  <label for="selHighPrice">Highest Price Selector</label>
+                  <input type="text" id="selHighPrice" class="form-control" placeholder="e.g. .highest-price">
+                </div>
+                <div class="form-group">
+                  <label for="selCheaperContainer">Cheaper Options Container Selector</label>
+                  <input type="text" id="selCheaperContainer" class="form-control" placeholder="e.g. .compare-stores .store-item">
+                </div>
+                <div class="form-group">
+                  <label for="selCheaperStore">Cheaper Store Name Selector</label>
+                  <input type="text" id="selCheaperStore" class="form-control" placeholder="e.g. .store-name">
+                </div>
+                <div class="form-group">
+                  <label for="selCheaperPrice">Cheaper Store Price Selector</label>
+                  <input type="text" id="selCheaperPrice" class="form-control" placeholder="e.g. .store-price">
+                </div>
+                <div class="form-group">
+                  <label for="selCheaperUrl">Cheaper Store Link Selector</label>
+                  <input type="text" id="selCheaperUrl" class="form-control" placeholder="e.g. a.deal-btn">
+                </div>
+              </div>
+            </details>
+          </div>
+          <div class="modal-footer">
+            <button id="cancelModalBtn" class="btn btn-secondary">Cancel</button>
+            <button id="saveProviderBtn" class="btn btn-primary">Save Provider</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../lib/providers.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

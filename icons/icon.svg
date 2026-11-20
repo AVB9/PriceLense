@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5" />
+      <stop offset="100%" stop-color="#7C3AED" />
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="50%" stop-color="#34D399" />
+      <stop offset="100%" stop-color="#FBBF24" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Rounded Background -->
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bgGrad)" filter="url(#shadow)" />
+  
+  <!-- Price Tag / Graph lines inside -->
+  <!-- Subtle Grid lines -->
+  <line x1="28" y1="44" x2="100" y2="44" stroke="#ffffff" stroke-opacity="0.15" stroke-dasharray="3,3" stroke-width="1.5" />
+  <line x1="28" y1="64" x2="100" y2="64" stroke="#ffffff" stroke-opacity="0.15" stroke-dasharray="3,3" stroke-width="1.5" />
+  <line x1="28" y1="84" x2="100" y2="84" stroke="#ffffff" stroke-opacity="0.15" stroke-dasharray="3,3" stroke-width="1.5" />
+
+  <!-- Trend Downward Line (Price Drop) -->
+  <path d="M 28 42 L 50 66 L 70 52 L 100 86" fill="none" stroke="url(#lineGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Points -->
+  <circle cx="28" cy="42" r="4" fill="#38BDF8" stroke="#ffffff" stroke-width="2" />
+  <circle cx="50" cy="66" r="4" fill="#60A5FA" stroke="#ffffff" stroke-width="2" />
+  <circle cx="70" cy="52" r="4" fill="#34D399" stroke="#ffffff" stroke-width="2" />
+  <circle cx="100" cy="86" r="5" fill="#F59E0B" stroke="#ffffff" stroke-width="2" />
+
+  <!-- Arrow pointing down at lowest point -->
+  <path d="M 94 98 L 100 104 L 106 98" fill="none" stroke="#FBBF24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
