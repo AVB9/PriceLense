@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "pricelenseextension",
     "public": "web",
     "ignore": [
       "firebase.json",
