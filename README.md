@@ -1,5 +1,7 @@
 # PriceLens
 
+https://pricelenseextension.web.app/
+
 **Version 3.3.0** · **Manifest V3 (Gecko & Chromium)** · **15+ Supported Browsers** · **MIT License**
 
 **PriceLens** is a cross-browser Manifest V3 shopping intelligence extension built with an Apple macOS Sequoia / iOS 18 Pro Dark material interface. It extracts live variant pricing, pulls verified historical price curves and milestones from [Buyhatke](https://buyhatke.com/) silently in the background, saves products into a cross-tab **Compare Memory**, and tracks multi-store spend in a **Universal Budget Cart**.
